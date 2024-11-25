@@ -1,0 +1,12 @@
+specVersion: 0.36.0
+name: knative-data-cleaning-test
+runtime: python
+registry: docker.io/darylang96
+namespace: default
+created: 2024-11-25T17:38:55.105987339+08:00
+invoke: cloudevent
+build:
+  builder: s2i
+deploy:
+  namespace: default
+  image: index.docker.io/darylang96/knative-data-cleaning-test@sha256:396e7bc6dfc0af975bd106adafce401e4c03d34e9e477aca3f48e1adfaba21f3
