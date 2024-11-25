@@ -1,6 +1,7 @@
 from parliament import Context, event
 import logging
 import sys
+import uuid
 
 logger = logging.getLogger()
 handler = logging.StreamHandler(sys.stdout)  # Write to stdout
@@ -25,11 +26,19 @@ def main(context: Context):
     inc_data = ce.data
     logger.info("Received CE " + str(ce))
 
+    attributes = {
+        "source": "sentiment-analysis",
+        "datacontenttype": "application/json",
+        "pipeline-id": uuid.uuid4()
+        "prev-source": ce["source"]
+    }
+
     out_data = {
         "comment": inc_data["CONTENT"],
         "video": inc_data["VIDEO_NAME"],
-        "date": inc_data["DATE"],
-        "prev-source": ce["source"]
+        "date": inc_data["DATE"]
     }
-    logger.info("Sending " + str(out_data))
-    return out_data
+
+    out_event = CloudEvent(attributes, out_data)
+    logger.info("Sending " + str(out_event))
+    return out_event
