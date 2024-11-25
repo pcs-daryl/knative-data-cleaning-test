@@ -27,13 +27,8 @@ def main(context: Context):
     inc_data = ce.data
     logger.info("Received CE " + str(ce))
 
-    attributes = {
-        "source": "sentiment-analysis",
-        "type": "clean-comment",
-        "datacontenttype": "application/json",
-        "pipeline-id": uuid.uuid4(),
-        "prev-source": ce["source"],
-    }
+    ce.attributes["prev-source"] = ce["source"]
+    ce.attributes["pipeline-id"] = uuid.uuid4()
 
     out_data = {
         "comment": inc_data["CONTENT"],
@@ -41,6 +36,6 @@ def main(context: Context):
         "date": inc_data["DATE"],
     }
 
-    out_event = CloudEvent(attributes, out_data)
-    logger.info("Sending " + str(out_event))
-    return out_event
+    ce.data = out_data
+    logger.info("Sending " + str(ce.data))
+    return ce

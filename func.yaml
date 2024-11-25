@@ -9,4 +9,4 @@ build:
   builder: s2i
 deploy:
   namespace: default
-  image: index.docker.io/darylang96/knative-data-cleaning-test@sha256:6ff1d4109b9b6bf4231406162c9527459c4fd247e85c84a988e189ca24cd3440
+  image: index.docker.io/darylang96/knative-data-cleaning-test@sha256:3fb1640cc49b154a08bcfab372ae5e685d8d35d5d4c21019f2116936f884eeff
