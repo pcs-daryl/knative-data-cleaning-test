@@ -27,9 +27,6 @@ def main(context: Context):
     inc_data = ce.data
     logger.info("Received CE " + str(ce))
 
-    ce["attributes"]["prev-source"] = ce["source"]
-    ce["attributes"]["pipeline-id"] = uuid.uuid4()
-
     out_data = {
         "comment": inc_data["CONTENT"],
         "video": inc_data["VIDEO_NAME"],
