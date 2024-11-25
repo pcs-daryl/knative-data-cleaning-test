@@ -29,7 +29,7 @@ def main(context: Context):
     attributes = {
         "source": "sentiment-analysis",
         "datacontenttype": "application/json",
-        "pipeline-id": uuid.uuid4()
+        "pipeline-id": uuid.uuid4(),
         "prev-source": ce["source"]
     }
 
